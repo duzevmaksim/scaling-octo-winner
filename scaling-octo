@@ -1,0 +1,14 @@
+            dependencies: [],
+            cornerRadius: 20,
+            background: background,
+            texts: [text],
+            stickers: [sticker],
+            id: collageID
+        )
+        Task { @MainActor in
+            if let maskImage = try? await backgroundRemoval.crateMask(for: image) {
+                dispatch(.changeCollage(.changeShape(
+                    .changeMedia(.changeMask(.change(maskImage))),
+                    id: id
+                )))
+            }
